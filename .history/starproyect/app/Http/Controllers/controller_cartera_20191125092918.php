@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use  App\codeudor;
+use  App\Cartera;
 use Illuminate\Support\Facades\Input; 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
-class controller_codeudor extends Controller
+class controller_cartera extends Controller
 {
     //
     public function index(){
-        $codeudor = codeudor::all()->toArray(); 
-        return response()->json($codeudor);
+        $cartera = Cartera::all()->toArray(); 
+        return response()->json($cartera);
     }
 
     public function store(Request $request)
@@ -21,20 +21,20 @@ class controller_codeudor extends Controller
         //
         try{
             
-            $codeudors = new codeudor([
-                'id_codeudor' => $request->input('id_codeudor'),  
+            $carteras = new Cartera([
+
+                'id_cartera' => $request->input('id_cartera'),  
                 'id_cliente'=> $request->input('id_cliente'), 
-                'nombre'=> $request->input('nombre'),  
-                'apellido'=> $request->input('apellido'),  
-                'direccion'=> $request->input('direccion'),  
-                'telefono'=> $request->input('telefono'),
-                'identificacion'=> $request->input('identificacion'),
-                'estado'=> $request->input('estado')
+                'id_credito'=> $request->input('id_credito'),  
+                'vlor_facturado'=> $request->input('vlor_facturado'),  
+                'vlor_pagado'=> $request->input('vlor_pagado'),  
+                'vlor_saldo'=> $request->input('vlor_saldo')
+                  
             ]);
             
-            Log::info('Codeudor  almacenada con existos!');
+            Log::info('Cartera  almacenada con existos!');
             
-            $codeudors->save();
+            $carteras->save();
             
             return response()->json(['status' => true, 'Genial!'], 200);
             
@@ -49,16 +49,16 @@ class controller_codeudor extends Controller
     {
         //
         try{
-            $codeudor = codeudor::find($id);
+            $cartera = Cartera::find($id);
             
-            if(!$codeudor){
+            if(!$cartera){
                 return response()->json(['Este Id no existe.'], 404);
             }
             
-            return response()->json($codeudor, 200);
+            return response()->json($cartera, 200);
             
         }catch(\Exception $e){
-            Log::critical('No se pudo mostrar codeudor '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
+            Log::critical('No se pudo mostrar Cartera '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
             return response(' [x_x]: Oh Oh! Algo ha salido mal.', 500);
         }
     }
@@ -68,20 +68,20 @@ class controller_codeudor extends Controller
         //
         try{
             
-            $codeudor = codeudor::find($id);
+            $cartera = Cartera::find($id);
             
-            if(!$codeudor){
+            if(!$cartera){
                 return response()->json(['Este Id no existe.'], 404);
             }
             
-            $codeudor ->update($request->all());
+            $cartera ->update($request->all());
 
-            $codeudor->save();
+            $cartera->save();
             
-            return response()->json('codeudor actualizada!', 200);
+            return response()->json('Cartera actualizada!', 200);
             
         }catch(\Exception $e){
-            Log::critical('No se pudo actualizar codeudor '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
+            Log::critical('No se pudo actualizar Cartera '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
             return response(' [x_x]: Oh Oh! Algo ha salido mal.', 500);
         }
     }
@@ -90,18 +90,18 @@ class controller_codeudor extends Controller
     {
         //
         try{
-            $codeudor = codeudor::find($id);
+            $cartera = Cartera::find($id);
             
-            if(!$codeudor){
+            if(!$cartera){
                 return response()->json(['Este Id no existe.'], 404);
             }
             
-            $codeudor->delete();
+            $cartera->delete();
             
-            return response()->json('codeudor eliminado.', 200);
+            return response()->json('Cartera eliminado.', 200);
             
         }catch(\Exception $e){
-            Log::critical('No se pudo eliminar codeudor '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
+            Log::critical('No se pudo eliminar Cartera '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
             return response(' [x_x]: Oh Oh! Algo ha salido mal.', 500);
         }
     }

@@ -23,7 +23,7 @@ class controller_credito_maestro extends Controller
         //
         try{
             
-            $id = credito_maestro::insertGetId([
+            $id = credito_maestro::('cr_gs_credito_maestro')->insertGetId([
                 'id_credito' => $request->input('id_credito'), 
                 'id_cliente' => $request->input('id_cliente'),
                 'fecha_credito' => $request->input('fecha_credito'),
@@ -38,7 +38,6 @@ class controller_credito_maestro extends Controller
                 'vlor_couta' => $request->input('vlor_couta'),
                 'vlor_saldo' => $request->input('vlor_saldo')
             ]);
-           
             /*$credito_maestro = new credito_maestro([
 
                 'id_credito' => $request->input('id_credito'), 
@@ -76,7 +75,7 @@ class controller_credito_maestro extends Controller
 
             foreach($datos_detalle as $d){
                 
-                $detalle = new  credito_detalle([					
+                $detalle = new model_credito_detalle([					
 					'id_credito' => $d->id_credito,
                     'nro_coutas' => $d->nro_coutas,
                     'fecha_credito' => $d->fecha_credito,

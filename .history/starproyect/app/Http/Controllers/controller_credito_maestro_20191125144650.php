@@ -23,7 +23,7 @@ class controller_credito_maestro extends Controller
         //
         try{
             
-            $id = credito_maestro::insertGetId([
+            $id = credito_maestro('cr_gs_credito_maestro')->insertGetId([
                 'id_credito' => $request->input('id_credito'), 
                 'id_cliente' => $request->input('id_cliente'),
                 'fecha_credito' => $request->input('fecha_credito'),

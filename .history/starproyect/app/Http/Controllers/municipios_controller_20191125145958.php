@@ -44,7 +44,7 @@ class municipios_controller extends Controller
     {
         //
         try{
-            $municipios = municipios::where('id_municipio', $id)->get();
+            $municipios = DB::table('cr_df_municipios')->where('id_municipio', $id)->get();
 
             return response()->json($municipios, 200);
             

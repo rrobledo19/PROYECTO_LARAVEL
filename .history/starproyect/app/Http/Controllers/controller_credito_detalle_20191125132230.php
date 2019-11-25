@@ -47,8 +47,9 @@ class controller_credito_detalle extends Controller
 
     public function buscar_x_credito($credito){
 
-        $cred_det = credito_detalle::where('id_credito', $credito)
-                                    ->get();
+        $cred_det = Credito_detalle('credito_detalle')
+                            ->where('id_credito', $credito)
+                            ->get();
 
         return response()->json($cred_det);
     }

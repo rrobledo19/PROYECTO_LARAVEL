@@ -108,7 +108,7 @@ class controller_pagosmaestro extends Controller
     }*/
 
     public function mincouta(){
-    $query = credito_detalle::select('credito_detalle.id_credito', 
+    $query = DB::table('credito_detalle')->select('credito_detalle.id_credito', 
     'credito_detalle.nro_coutas as numero_couta',
     'credito_detalle.fecha_credito',
     'credito_detalle.vlor_capital', 
@@ -147,7 +147,7 @@ class controller_pagosmaestro extends Controller
     public function storeDetallePago(Request $request, $id_pago){
         try{
 
-            $detalle = new pagosdetalles([					
+            $detalle = new model_pagosdetalles([					
                 'id_pagos' => $id_pago,
                 'nro_coutas' => $request->input('nro_coutas'),
                 'vlor_couta' => $request->input('vlor_couta'),
