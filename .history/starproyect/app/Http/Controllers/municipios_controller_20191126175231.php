@@ -93,7 +93,7 @@ class municipios_controller extends Controller
     {
         //
         try{
-            $municipios = municipio::find($id);
+            $municipios = municipios::find($id);
             
             if(!$municipios){
                 return response()->json(['Este Id no existe.'], 404);

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use  App\municipio;
-use  App\departamento;
 use Illuminate\Support\Facades\Input; 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -45,7 +44,7 @@ class municipios_controller extends Controller
     {
         //
         try{
-            $municipios = municipio::where('id_municipio', $id)->get();
+            $municipios = municipios::where('id_municipio', $id)->get();
 
             return response()->json($municipios, 200);
             
@@ -59,7 +58,7 @@ class municipios_controller extends Controller
     {
         //
         try{
-            $municipios = municipio::where([
+            $municipios = municipios::where([
                                 ['id_departamento', $id_depto],
                                 ['tipo','CM']
             ])->get();
@@ -77,7 +76,7 @@ class municipios_controller extends Controller
         //
         try{
             
-            $departamento_query = departamento::where('id_departamento', $id);
+            $departamento_query = DB::table('departamento')->where('id_departamento', $id);
 
             $departamento_query->update(['descrpcion' => $request('descrpcion')]);
             
@@ -93,7 +92,7 @@ class municipios_controller extends Controller
     {
         //
         try{
-            $municipios = municipio::find($id);
+            $municipios = municipios::find($id);
             
             if(!$municipios){
                 return response()->json(['Este Id no existe.'], 404);
