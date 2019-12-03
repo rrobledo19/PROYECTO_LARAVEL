@@ -74,13 +74,11 @@ class controller_credito_maestro extends Controller
             
             $datos_detalle = json_decode($request->getContent());
 
-            //Log::info($datos_detalle);
+            Log::info($datos_detalle);
 
             foreach($datos_detalle as $d){
-
-                //Log::info('id_credito: '.$d->id_credito);
                 
-                $detalle = new  credito_detalle([
+                $detalle = new  credito_detalle([					
 					'id_credito' => $d->id_credito,
                     'nro_coutas' => $d->nro_coutas,
                     'fecha_credito' => $d->fecha_credito,

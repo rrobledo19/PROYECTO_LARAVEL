@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Auth;class AuthController extends Controller
             'remember_me' => 'boolean',
         ]);        
         
-        $credentials = request(['email', 'password']);
+        $credentials = request(['email', 'password', 'name']);
         
         if (!Auth::attempt($credentials)) {
             return response()->json([
@@ -52,7 +52,6 @@ use Illuminate\Support\Facades\Auth;class AuthController extends Controller
         
         return response()->json([
             'access_token' => $tokenResult->accessToken,
-            'nombre'       => $user->name,
             'token_type'   => 'Bearer',
             'expires_at'   => Carbon::parse(
                 $tokenResult->token->expires_at)

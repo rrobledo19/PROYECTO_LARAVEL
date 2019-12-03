@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\Auth;class AuthController extends Controller
         
         return response()->json([
             'access_token' => $tokenResult->accessToken,
-            'nombre'       => $user->name,
+            'nombre'       => $tokenResult->name,
             'token_type'   => 'Bearer',
             'expires_at'   => Carbon::parse(
                 $tokenResult->token->expires_at)

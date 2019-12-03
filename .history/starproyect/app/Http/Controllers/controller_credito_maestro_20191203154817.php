@@ -72,9 +72,9 @@ class controller_credito_maestro extends Controller
     public function storeDetalleCredito(Request $request){
         try{
             
-            $datos_detalle = json_decode($request->getContent());
+            $datos_detalle = json_decode($request);
 
-            //Log::info($datos_detalle);
+            Log::info($datos_detalle);
 
             foreach($datos_detalle as $d){
 

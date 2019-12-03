@@ -74,7 +74,7 @@ class controller_credito_maestro extends Controller
             
             $datos_detalle = json_decode($request->getContent());
 
-            //Log::info($datos_detalle);
+            Log::info($datos_detalle);
 
             foreach($datos_detalle as $d){
 
