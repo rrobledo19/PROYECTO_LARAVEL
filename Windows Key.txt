@@ -1,0 +1,13 @@
+ShowKeyPlus - Windows Product Key Information
+
+Product Name:	Windows 10 Pro
+
+Version:	18362.418 (64-bit OS)
+
+Product ID:	00331-10000-00001-AA181
+
+Installed Key:	W269N-WFGWX-YVC9B-4J6C9-T83GX
+
+OEM Key:	DF67W-NFJJ9-XPQQ9-Y2DYD-M7TVK
+
+OEM Edition:	Win 8.1 RTM CoreSingleLanguage OEM:DM
