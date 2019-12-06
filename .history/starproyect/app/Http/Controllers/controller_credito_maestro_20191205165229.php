@@ -153,7 +153,7 @@ class controller_credito_maestro extends Controller
             return response()->json($credito_detalle, 200);
             
         }catch(\Exception $e){
-            Log::critical('No se pudo mostrar credito_detalle '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
+            Log::critical('No se pudo mostrar credito_detalleo '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
             return response(' [x_x]: Oh Oh! Algo ha salido mal.', 500);
         }
     }

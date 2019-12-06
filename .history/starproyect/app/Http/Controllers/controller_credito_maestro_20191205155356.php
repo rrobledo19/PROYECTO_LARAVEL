@@ -124,8 +124,7 @@ class controller_credito_maestro extends Controller
     {
         //
         try{
-            //Colocar los campos que se visualizarán del maestro creditos.
-            $credito_maestro = credito_maestro::select(DB::raw('*'))->where('id_cliente', '=', $id_cliente)->get();
+            $credito_maestro = credito_maestro::where('id_cliente', '=', $id_cliente)->get();
             
             if(!$credito_maestro){
                 return response()->json(['Este Id_cliente no existe.'], 404);
@@ -135,25 +134,6 @@ class controller_credito_maestro extends Controller
             
         }catch(\Exception $e){
             Log::critical('No se pudo mostrar credito_maestro '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
-            return response(' [x_x]: Oh Oh! Algo ha salido mal.', 500);
-        }
-    }
-
-    public function show_detalle_credito($id_credito) {
-        try{
-            //Colocar los campos que se visualizarán del maestro detalle.
-            $credito_detalle = credito_detalle::select(DB::raw('*'))
-                                ->where('id_credito', '=', $id_credito)
-                                ->get();
-            
-            if(!$credito_detalle){
-                return response()->json(['Este Id no existe.'], 404);
-            }
-            
-            return response()->json($credito_detalle, 200);
-            
-        }catch(\Exception $e){
-            Log::critical('No se pudo mostrar credito_detalle '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
             return response(' [x_x]: Oh Oh! Algo ha salido mal.', 500);
         }
     }

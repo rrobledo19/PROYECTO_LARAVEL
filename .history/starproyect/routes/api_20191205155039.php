@@ -41,11 +41,10 @@ Route::group(['prefix' => 'auth'], function () {
     Route::resource('codeudor','controller_codeudor', ['only' =>['index','store','show','update','destroy']]);
     
     Route::resource('credito_maestro','controller_credito_maestro', ['only' =>['index','store','show','update','destroy']]);
-    Route::post('create_credito_detalle','controller_credito_maestro@storeDetalleCredito');    
+    Route::post('credito_detalle','controller_credito_maestro@storeDetalleCredito');    
     Route::get('credito_cliente/{id_cliente}','controller_credito_maestro@show_x_cliente');
-    Route::get('credito_detalle/{id_credito}','controller_credito_maestro@show_detalle_credito');
-
-    //Route::get('credito_detalle/{id_credito}','controller_credito_detalle@buscar_x_credito');
+    
+    Route::get('credito_detalle/{id_credito}','controller_credito_detalle@buscar_x_credito');
     
 
     Route::resource('departamentos','departamento_controller', ['only' =>['index','store','show','update','destroy']]);
