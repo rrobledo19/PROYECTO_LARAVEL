@@ -24,7 +24,7 @@ class controller_credito_detalle extends Controller
         fecha_credito,
         vlor_couta,
         vlor_saldo,
-        estado'))->get();
+        estado'))->get(); 
         return response()->json($credito_detalle);
     }
    

@@ -158,8 +158,6 @@ class controller_pagosmaestro extends Controller
 
             $monto_aplicar = $request->input('mnto_pagado');
 
-            Log::info('Id Pago: '.$id_pago);
-
             //$detalle = new pagodetalle;
 
             foreach($data_detalle as $detalle) {
@@ -176,7 +174,7 @@ class controller_pagosmaestro extends Controller
                             'mnto_pagado' => $monto_aplicar,
                             'vlor_capital_pgdo' => $detalle->vlor_capital,
                             'vlor_interes_pgdo' => $detalle->vlor_interes,
-                            'id_credito_detalle' => $detalle->id_credito_detalle                            
+                            'id_credito_detalle' => $detalle->id_credito_detalle
                         ]);
 
                         $monto_aplicar = $monto_aplicar - $detalle->vlor_couta;

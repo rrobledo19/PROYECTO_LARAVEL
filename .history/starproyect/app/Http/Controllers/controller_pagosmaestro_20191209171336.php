@@ -158,16 +158,14 @@ class controller_pagosmaestro extends Controller
 
             $monto_aplicar = $request->input('mnto_pagado');
 
-            Log::info('Id Pago: '.$id_pago);
-
             //$detalle = new pagodetalle;
 
             foreach($data_detalle as $detalle) {
 
-                Log::info('Cuota: '.$detalle->nro_coutas.', valor: '.$detalle->vlor_couta.', monto: '.$monto_aplicar);
+                Log::info('Lenyendo cuota '.$detalle->nro_coutas.', valor: '.$detalle->vlor_couta.', monto: '.$monto_aplicar);
 
                 if ($monto_aplicar > 0) {
-                    if ($detalle->vlor_couta == $monto_aplicar) {
+                    if ($detalle->vlor_couta = $monto_aplicar) {
                         //Si el monto a pagar es igual al total de una cuota, se aplica a esa cuota
                         $detalle = new PagoDetalle([					
                             'id_pagos' => $id_pago,
@@ -176,12 +174,12 @@ class controller_pagosmaestro extends Controller
                             'mnto_pagado' => $monto_aplicar,
                             'vlor_capital_pgdo' => $detalle->vlor_capital,
                             'vlor_interes_pgdo' => $detalle->vlor_interes,
-                            'id_credito_detalle' => $detalle->id_credito_detalle                            
+                            'id_credito_detalle' => $detalle->id_credito_detalle
                         ]);
 
-                        $monto_aplicar = $monto_aplicar - $detalle->vlor_couta;
+                        $detalle->save();
 
-                        $detalle->save();                        
+                        $monto_aplicar = $monto_aplicar - $detalle->vlor_couta;
 
                         Log::info('inv_entradas_detalle almacenada! 1');
 
@@ -195,10 +193,10 @@ class controller_pagosmaestro extends Controller
                             'vlor_interes_pgdo' => $detalle->vlor_interes,
                             'id_credito_detalle' => $detalle->id_credito_detalle
                         ]);
-                        
-                        $monto_aplicar = $monto_aplicar - $detalle->vlor_couta;
-                        
+
                         $detalle->save();
+
+                        $monto_aplicar = $monto_aplicar - $detalle->vlor_couta;
 
                         Log::info('inv_entradas_detalle almacenada! 2');
 
@@ -213,9 +211,9 @@ class controller_pagosmaestro extends Controller
                             'id_credito_detalle' => $detalle->id_credito_detalle
                         ]);
 
-                        $monto_aplicar = 0;
-
                         $detalle->save();
+
+                        $monto_aplicar = 0;
 
                         Log::info('inv_entradas_detalle almacenada! 3');
                     }                    

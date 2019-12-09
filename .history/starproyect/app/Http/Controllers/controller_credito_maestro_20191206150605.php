@@ -88,7 +88,7 @@ class controller_credito_maestro extends Controller
                     'vlor_interes' => $d->vlor_interes,
                     'vlor_couta' => $d->vlor_couta,
                     'vlor_saldo' => $d->vlor_saldo,
-                    'estado' => $d->nro_coutas == 1 ? 'P':'N'
+                    'estado' => 'P'
 				]);
 				
 				//Log::info('inv_entradas_detalle almacenada!');

@@ -14,7 +14,7 @@ class Credito_detalle extends Model
    protected $primaryKey = 'id_credito_detalle';
 
    protected $fillable = [
-    'credito',
+    'id_credito',
     'nro_coutas',
     'fecha_credito',
     'vlor_capital',

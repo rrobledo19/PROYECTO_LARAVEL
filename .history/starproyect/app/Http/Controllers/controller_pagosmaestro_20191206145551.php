@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use  App\pagosmaestro;
-use  App\PagoDetalle;
+use  App\pagosdetalles;
 use  App\credito_detalle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,10 +25,9 @@ class controller_pagosmaestro extends Controller
                 'id_pagos' => $request->input('id_pago'),
                 'id_credito' => $request->input('id_credito'),
                 'fecha_pago' => $request->input('fecha_pago'),
-                'estado' => $request->input('estado'),  
-                'vlor_pagado' => $request->input('valor_pagado'),  
-                'cta_bncaria' => $request->input('cta_bncaria'),
-                'frma_pago' => $request->input('frma_pago')
+                'estado' => $request->input('estado'),
+                'saldo_capital' => $request->input('saldo_capital'), 
+                'saldo_interes' => $request->input('saldo_interes')               
             ]);
             
             Log::info('pagos maestros  almacenado con existos!');
@@ -144,85 +143,21 @@ class controller_pagosmaestro extends Controller
             ->get();
 
             return response()->json($query); 
-    }    
+    }
 
     public function storeDetallePago(Request $request, $id_pago){
         try{
 
-            $cuotas_cr = credito_detalle::where([
-                                ['id_credito', $request->input('id_credito')],
-                                ['nro_coutas', '>', 0]
-            ])->get();
-
-            $data_detalle = json_decode($cuotas_cr);
-
-            $monto_aplicar = $request->input('mnto_pagado');
-
-            Log::info('Id Pago: '.$id_pago);
-
-            //$detalle = new pagodetalle;
-
-            foreach($data_detalle as $detalle) {
-
-                Log::info('Cuota: '.$detalle->nro_coutas.', valor: '.$detalle->vlor_couta.', monto: '.$monto_aplicar);
-
-                if ($monto_aplicar > 0) {
-                    if ($detalle->vlor_couta == $monto_aplicar) {
-                        //Si el monto a pagar es igual al total de una cuota, se aplica a esa cuota
-                        $detalle = new PagoDetalle([					
-                            'id_pagos' => $id_pago,
-                            'nro_coutas' => $detalle->nro_coutas,
-                            'vlor_couta' => $detalle->vlor_couta,
-                            'mnto_pagado' => $monto_aplicar,
-                            'vlor_capital_pgdo' => $detalle->vlor_capital,
-                            'vlor_interes_pgdo' => $detalle->vlor_interes,
-                            'id_credito_detalle' => $detalle->id_credito_detalle                            
-                        ]);
-
-                        $monto_aplicar = $monto_aplicar - $detalle->vlor_couta;
-
-                        $detalle->save();                        
-
-                        Log::info('inv_entradas_detalle almacenada! 1');
-
-                    }elseif($detalle->vlor_couta < $monto_aplicar){
-                        $detalle = new PagoDetalle([					
-                            'id_pagos' => $id_pago,
-                            'nro_coutas' => $detalle->nro_coutas,
-                            'vlor_couta' => $detalle->vlor_couta,
-                            'mnto_pagado' => $detalle->vlor_couta,
-                            'vlor_capital_pgdo' => $detalle->vlor_capital,
-                            'vlor_interes_pgdo' => $detalle->vlor_interes,
-                            'id_credito_detalle' => $detalle->id_credito_detalle
-                        ]);
-                        
-                        $monto_aplicar = $monto_aplicar - $detalle->vlor_couta;
-                        
-                        $detalle->save();
-
-                        Log::info('inv_entradas_detalle almacenada! 2');
-
-                    }elseif($detalle->vlor_couta > $monto_aplicar){
-                        $detalle = new PagoDetalle([					
-                            'id_pagos' => $id_pago,
-                            'nro_coutas' => $detalle->nro_coutas,
-                            'vlor_couta' => $detalle->vlor_couta,
-                            'mnto_pagado' => $monto_aplicar,
-                            'vlor_capital_pgdo' => $detalle->vlor_capital,
-                            'vlor_interes_pgdo' => $detalle->vlor_interes,
-                            'id_credito_detalle' => $detalle->id_credito_detalle
-                        ]);
-
-                        $monto_aplicar = 0;
-
-                        $detalle->save();
-
-                        Log::info('inv_entradas_detalle almacenada! 3');
-                    }                    
-                }
-            }
+            $detalle = new pagosdetalles([					
+                'id_pagos' => $id_pago,
+                'nro_coutas' => $request->input('nro_coutas'),
+                'vlor_couta' => $request->input('vlor_couta'),
+                'mnto_pagado' => $request->input('mnto_pagado')
+            ]);
             
             //Log::info('inv_entradas_detalle almacenada!');
+        
+            $detalle->save();
                         
         }catch(\Exception $e){
             Log::critical('No se pudo almacenar Credito_detalle  '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
