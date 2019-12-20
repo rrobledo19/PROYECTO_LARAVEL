@@ -162,7 +162,7 @@ class controller_credito_maestro extends Controller
                                                                 vlor_capital as Capital ,
                                                                 vlor_interes as Interes,
                                                                 vlor_couta as  Couta,
-                                                                vlor_saldo  as Saldo'))
+                                                                vlor_saldo  as Saldo,'))
                                 ->where('id_credito', '=', $id_credito)
                                 ->get();
             

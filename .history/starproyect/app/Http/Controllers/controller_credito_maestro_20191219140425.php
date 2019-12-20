@@ -126,20 +126,9 @@ class controller_credito_maestro extends Controller
         //
         try{
             //Colocar los campos que se visualizarán del maestro creditos.
-            $credito_maestro = credito_maestro::select(DB::raw('id_credito,
-            fecha_credito as Fecha_Credito,
-            fecha_vencimiento as Fecha_Vencimiento,
-            nro_coutas        as N°_Coutas,
-            tasa              as Tasa,
-            periodo           as Periodo,
-            vlor_capital      as Capital,  
-            vlor_interes      as Interes,
-            vlor_couta        as Couta,
-            vlor_estudios     as Seguros,
-            vlor_saldo        as Saldo' 
-            
-
-            ))->where('id_cliente', '=', $id_cliente)->get();
+            $credito_maestro = credito_maestro::select(DB::raw('id_credito',
+                                                               'id_cliente',
+                                                               'fecha_credito'))->where('id_cliente', '=', $id_cliente)->get();
             
             if(!$credito_maestro){
                 return response()->json(['Este Id_cliente no existe.'], 404);
@@ -156,13 +145,7 @@ class controller_credito_maestro extends Controller
     public function show_detalle_credito($id_credito) {
         try{
             //Colocar los campos que se visualizarán del maestro detalle.
-            $credito_detalle = credito_detalle::select(DB::raw('id_credito as Credito, 
-                                                                nro_coutas as N°_Coutas,  
-                                                                fecha_credito as Fecha_Credito, 
-                                                                vlor_capital as Capital ,
-                                                                vlor_interes as Interes,
-                                                                vlor_couta as  Couta,
-                                                                vlor_saldo  as Saldo'))
+            $credito_detalle = credito_detalle::select(DB::raw('*'))
                                 ->where('id_credito', '=', $id_credito)
                                 ->get();
             

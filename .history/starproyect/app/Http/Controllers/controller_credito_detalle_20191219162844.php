@@ -59,13 +59,7 @@ class controller_credito_detalle extends Controller
 
     public function buscar_x_credito($credito){
 
-        $cred_det = credito_detalle::select(DB::raw('id_credito as Credito, 
-        nro_coutas as N°_Coutas,  
-        fecha_credito as Fecha_Credito, 
-        vlor_capital as Capital ,
-        vlor_interes as Interes,
-        vlor_couta as  Couta,
-        vlor_saldo  as Saldo'))->where('id_credito','=', $credito)->get();
+        $cred_det = credito_detalle::select(DB::raw('*'))->where('id_credito','=', $credito)->get();
 
         return response()->json($cred_det);
     }
