@@ -180,7 +180,7 @@ class controller_clientes extends Controller
     )->execute();    
     $file = $output . '.pdf';
     $path = $file;
-   Log::info('directorio pdf'. public_path());
+   Log::info('directorio pdf'.$file);
     // caso o arquivo não tenha sido gerado retorno um erro 404
     if (!file_exists($file)) {
         abort(404);

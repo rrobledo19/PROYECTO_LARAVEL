@@ -147,15 +147,14 @@ class controller_pagosmaestro extends Controller
     }    
 
 
-   public function listado_pagos($id_creditos){
+   public function listado_pagos(){
     try{  
     $query = PagoDetalle::select('cr_gs_pagos_detalle.id_pagos', 
                                     'cr_gs_pagos_detalle.nro_coutas', 
                                     'cr_gs_pagos_detalle.vlor_capital_pgdo', 
                                     'cr_gs_pagos_detalle.vlor_interes_pgdo', 
                                     'cr_gs_pagos_detalle.mnto_pagado')
-                                    -> join ('cr_gs_creditos_detalle','cr_gs_pagos_detalle.id_credito_detalle','=','cr_gs_creditos_detalle.id_credito_detalle')
-                                    -> where('cr_gs_creditos_detalle.id_credito', '=', $id_creditos)->get();
+                                    -> join ('cr_gs_creditos_detalle','cr_gs_pagos_detalle.id_credito_detalle','=','cr_gs_creditos_detalle.id_credito_detalle')->get();
                                
                                     Log::info('consultasql: '.$query);
                                

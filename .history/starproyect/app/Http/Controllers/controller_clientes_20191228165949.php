@@ -164,8 +164,8 @@ class controller_clientes extends Controller
     
   $jasper->process(
         // Ruta y nombre de archivo de entrada del reporte
-        $output =  base_path() . '/vendor/cossou/jasperphp/examples/hello_world', 
-        false, // Ruta y nombre de archivo de salida del reporte (sin extensión)
+        $output =  base_path() . '/vendor/cossou/jasperphp/examples/hello_world.jasper', 
+        //false, // Ruta y nombre de archivo de salida del reporte (sin extensión)
         array('pdf', 'rtf'), // Formatos de salida del reporte
         array('php_version' => phpversion()), // Parámetros del reporte
         array(
@@ -180,7 +180,7 @@ class controller_clientes extends Controller
     )->execute();    
     $file = $output . '.pdf';
     $path = $file;
-   Log::info('directorio pdf'. public_path());
+   
     // caso o arquivo não tenha sido gerado retorno um erro 404
     if (!file_exists($file)) {
         abort(404);

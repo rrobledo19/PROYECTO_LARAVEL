@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoCreditos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48a29bb2-4133-4191-9c39-3b0d7f8c6144">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="creditos" uuid="912e0318-01ee-45de-a367-260a7f50ec6c">
+		<queryString language="SQL">
+			<![CDATA[select * from cr_df_clientes;]]>
+		</queryString>
+		<field name="id_cliente" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="n_formato" class="java.lang.String">
+			<fieldDescription><![CDATA[NUMERO DE FORMATO]]></fieldDescription>
+		</field>
+		<field name="nombres" class="java.lang.String">
+			<fieldDescription><![CDATA[NOMBRE]]></fieldDescription>
+		</field>
+		<field name="apellidos" class="java.lang.String">
+			<fieldDescription><![CDATA[APELLIDOS]]></fieldDescription>
+		</field>
+		<field name="direccion" class="java.lang.String">
+			<fieldDescription><![CDATA[DIRECCION DE RESISDENCIA]]></fieldDescription>
+		</field>
+		<field name="telefono" class="java.lang.Long">
+			<fieldDescription><![CDATA[TELEFONO]]></fieldDescription>
+		</field>
+		<field name="email" class="java.lang.String">
+			<fieldDescription><![CDATA[CORREO ELECTRONICO]]></fieldDescription>
+		</field>
+		<field name="identificacion" class="java.lang.Integer">
+			<fieldDescription><![CDATA[IDENTIFICACION EN #]]></fieldDescription>
+		</field>
+		<field name="n_identificacion" class="java.lang.Long">
+			<fieldDescription><![CDATA[NUMERO DE IDENTIFICACION]]></fieldDescription>
+		</field>
+		<field name="departamento" class="java.lang.Integer">
+			<fieldDescription><![CDATA[DE PARATAMENTO]]></fieldDescription>
+		</field>
+		<field name="municipio" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[MUNICIPIO]]></fieldDescription>
+		</field>
+		<field name="barrio" class="java.lang.String">
+			<fieldDescription><![CDATA[BARRIO]]></fieldDescription>
+		</field>
+		<field name="observacion" class="java.lang.String">
+			<fieldDescription><![CDATA[OBSERVACION]]></fieldDescription>
+		</field>
+		<field name="estado" class="java.lang.String">
+			<fieldDescription><![CDATA[ESTADO DE CLIENTE]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[select * from cr_df_clientes]]>
+	</queryString>
+	<field name="id_cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_formato" class="java.lang.String">
+		<fieldDescription><![CDATA[NUMERO DE FORMATO]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[NOMBRE]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[APELLIDOS]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[DIRECCION DE RESISDENCIA]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.Long">
+		<fieldDescription><![CDATA[TELEFONO]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[CORREO ELECTRONICO]]></fieldDescription>
+	</field>
+	<field name="identificacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[IDENTIFICACION EN #]]></fieldDescription>
+	</field>
+	<field name="n_identificacion" class="java.lang.Long">
+		<fieldDescription><![CDATA[NUMERO DE IDENTIFICACION]]></fieldDescription>
+	</field>
+	<field name="departamento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[DE PARATAMENTO]]></fieldDescription>
+	</field>
+	<field name="municipio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[MUNICIPIO]]></fieldDescription>
+	</field>
+	<field name="barrio" class="java.lang.String">
+		<fieldDescription><![CDATA[BARRIO]]></fieldDescription>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<fieldDescription><![CDATA[OBSERVACION]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[ESTADO DE CLIENTE]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="456" y="0" width="99" height="132" uuid="b54cbaa9-e6b3-4dda-9a3d-fa96e35d6070"/>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="235ccd83-1af8-463e-9e33-932dbaf00c2e"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="f96511fb-56c2-4fc3-b9a5-5b13079bbcc4"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Creditos S.a.S]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="157" y="66" width="249" height="29" uuid="79461f36-1c79-43f9-accc-4421932f92c7"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[RRRr]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000" uuid="31aaf057-e671-4a84-b370-d30925404ce7"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="09274297-647f-4069-86be-cc786b657d33"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="33" y="0" width="100" height="20" uuid="7b96724d-1597-42a8-8554-db42de17efd2"/>
+				<textFieldExpression><![CDATA[$F{id_cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="92aa925f-7b95-4936-9c41-2bb8884c6fa7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="8e9269bf-9417-4d94-8356-770d8c1c8d8c"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="d6a996c2-f115-4b2c-be5e-0bbbe718801c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="de9ea45a-a2d1-4af9-a493-c60e2dde119b"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="6e9030e5-812e-450b-9486-40204b64184c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

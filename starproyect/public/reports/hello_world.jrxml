@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hello_world" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="09ce4c10-88e5-4cc4-8644-f806caa4c6eb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="php_version" class="java.lang.String">
+		<defaultValueExpression><![CDATA[none]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from cr_df_clientes]]>
+	</queryString>
+	<field name="id_cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_formato" class="java.lang.String">
+		<fieldDescription><![CDATA[NUMERO DE FORMATO]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[NOMBRE ]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[APELLIDOS]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[DIRECCION DE RESISDENCIA]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.Long">
+		<fieldDescription><![CDATA[TELEFONO ]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[CORREO ELECTRONICO]]></fieldDescription>
+	</field>
+	<field name="identificacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[IDENTIFICACION EN #]]></fieldDescription>
+	</field>
+	<field name="n_identificacion" class="java.lang.Long">
+		<fieldDescription><![CDATA[NUMERO DE IDENTIFICACION ]]></fieldDescription>
+	</field>
+	<field name="departamento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[DE PARATAMENTO ]]></fieldDescription>
+	</field>
+	<field name="municipio" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[MUNICIPIO]]></fieldDescription>
+	</field>
+	<field name="barrio" class="java.lang.String">
+		<fieldDescription><![CDATA[BARRIO ]]></fieldDescription>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<fieldDescription><![CDATA[OBSERVACION ]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[ESTADO DE CLIENTE]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="176" splitType="Stretch"/>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="20" uuid="667cd65f-2092-4b3e-b888-233ccc80bb4f"/>
+				<text><![CDATA[NOMBRE ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="2eec1a4f-da20-480b-93e1-c16ea08d0b77"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="26" width="555" height="28" uuid="4c3772ce-ee6a-42ae-b13d-babb1692d0d4"/>
+				<text><![CDATA[Made with JasperPHP]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

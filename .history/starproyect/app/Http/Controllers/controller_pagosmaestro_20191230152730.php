@@ -147,23 +147,14 @@ class controller_pagosmaestro extends Controller
     }    
 
 
-   public function listado_pagos($id_creditos){
-    try{  
-    $query = PagoDetalle::select('cr_gs_pagos_detalle.id_pagos', 
+   public function listado_pagos(){
+       $query = PagoDetalle::select('cr_gs_pagos_detalle.id_pagos', 
                                     'cr_gs_pagos_detalle.nro_coutas', 
                                     'cr_gs_pagos_detalle.vlor_capital_pgdo', 
                                     'cr_gs_pagos_detalle.vlor_interes_pgdo', 
                                     'cr_gs_pagos_detalle.mnto_pagado')
                                     -> join ('cr_gs_creditos_detalle','cr_gs_pagos_detalle.id_credito_detalle','=','cr_gs_creditos_detalle.id_credito_detalle')
-                                    -> where('cr_gs_creditos_detalle.id_credito', '=', $id_creditos)->get();
-                               
-                                    Log::info('consultasql: '.$query);
-                               
-                                    return response()->json($query); 
-                                }catch(\Exception $e){
-                                    Log::critical('No se pudo error en consulta  '.$e->getCode().', '.$e->getLine().', '.$e->getMessage());
-                                    return response(' [x_x]: Oh Oh! Algo ha salido mal.', 500);
-                                }
+                                    -> where(['cr_gs_creditos_detalle.id_credito','=',$request->input('id_credito')])
    }
 
   

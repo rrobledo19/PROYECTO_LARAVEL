@@ -60,7 +60,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::resource('pagosmaestro','controller_pagosmaestro', ['only' =>['index','store','show','update','destroy']]);
     Route::get('ncouta','controller_pagosmaestro@mincouta');
-    Route::get('lista_pagos_cliente/{id_creditos}','controller_pagosmaestro@listado_pagos'); 
+    Route::get('lista_pagos_cliente','controller_pagosmaestro@listado_pagos'); 
     Route::post('pagos_detalles/{id_pago}','controller_pagosmaestro@storeDetallePago');
     }); 
    

@@ -164,11 +164,12 @@ class controller_clientes extends Controller
     
   $jasper->process(
         // Ruta y nombre de archivo de entrada del reporte
-        $output =  base_path() . '/vendor/cossou/jasperphp/examples/hello_world', 
+       $out =  base_path() . '/vendor/cossou/jasperphp/examples/hello_world.jasper'. time(), 
         false, // Ruta y nombre de archivo de salida del reporte (sin extensión)
         array('pdf', 'rtf'), // Formatos de salida del reporte
         array('php_version' => phpversion()), // Parámetros del reporte
         array(
+            base_path() . '/vendor/cossou/jasperphp/examples/hello_world.jasper',
             'driver' => 'mysql',
             'username' => 'root',
             'password' => '',
@@ -178,20 +179,6 @@ class controller_clientes extends Controller
             'jdbc_dir' => base_path(). '/vendor/geekcom/phpjasper/bin/jasperstarter/jdbc'
            )
     )->execute();    
-    $file = $output . '.pdf';
-    $path = $file;
-   Log::info('directorio pdf'. public_path());
-    // caso o arquivo não tenha sido gerado retorno um erro 404
-    if (!file_exists($file)) {
-        abort(404);
-    } //caso tenha sido gerado pego o conteudo
-
-    $file = file_get_contents($file); //deleto o arquivo gerado, pois iremos mandar o conteudo para o navegador
-    unlink($path); // retornamos o conteudo para o navegador que íra abrir o PDF
-    return response($file, 200)
-        ->header('Content-Type', 'application/pdf')
-        ->header('Content-Disposition', 'inline; filename="Archivo.pdf"');
-
 
   }
 }

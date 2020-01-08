@@ -155,7 +155,7 @@ class controller_pagosmaestro extends Controller
                                     'cr_gs_pagos_detalle.vlor_interes_pgdo', 
                                     'cr_gs_pagos_detalle.mnto_pagado')
                                     -> join ('cr_gs_creditos_detalle','cr_gs_pagos_detalle.id_credito_detalle','=','cr_gs_creditos_detalle.id_credito_detalle')
-                                    -> where('cr_gs_creditos_detalle.id_credito', '=', $id_creditos)->get();
+                                    -> where('cr_gs_creditos_detalle.id_credito', '=', $id_creditos))->get();
                                
                                     Log::info('consultasql: '.$query);
                                
